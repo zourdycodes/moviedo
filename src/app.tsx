@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-import logo from './logo.svg';
-=======
->>>>>>> d6a3022 (branching: fix conflict)
-import './App.css';
+import './global/app.css';
 
 export const App: React.FC =(): JSX.Element => {
   return (
