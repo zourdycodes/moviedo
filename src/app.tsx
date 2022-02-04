@@ -1,16 +1,18 @@
 import React from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+
 import "./dist/main.css";
+import 'swiper/swiper.min.css';
 
 export const App: React.FC =(): JSX.Element => {
   return (
-    <div className="App">
-     <h1>hello world</h1>
-
-     <h2>who the fuck is that!</h2>
-     <h2>boo</h2>
-
-    <h2>jugg</h2>
-    </div>
+   <BrowserRouter>
+    <Route render={props => (
+        <>
+        <h1>boo</h1>
+          </>
+    )} />
+   </BrowserRouter>
   );
 }
 
