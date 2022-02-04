@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+export const App: React.FC =(): JSX.Element => {
   return (
     <div className="App">
      <h1>hello world</h1>
@@ -15,4 +15,3 @@ function App() {
   );
 }
 
-export default App;
