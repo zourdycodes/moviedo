@@ -78,15 +78,18 @@
 
     @include mobile {
       position: fixed;
+      // bottom: -10px;
       bottom: 0;
       left: 0;
       height: 5rem;
       width: 100%;
+      // background-color: magenta;
       background-color: $body-bg;
-      padding: 0 2rem;
+      padding: 0 0.5rem;
       box-shadow: $box-shadow;
 
-      @include flex(center, space-between);
+      @include flex(center, space-evenly);
+      align-items: center;
 
       & > * ~ * {
         margin-left: 0;
