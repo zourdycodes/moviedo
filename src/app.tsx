@@ -1,4 +1,5 @@
 import React from 'react';
+import "./dist/main.css";
 
 export const App: React.FC =(): JSX.Element => {
   return (
