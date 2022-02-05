@@ -1,9 +1,20 @@
 import React from "react";
 
-export const Input: React.FC = () => {
+type InputProps = {
+  type: string;
+  placeholder: string;
+  value: string | number | any;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export const Input: React.FC<InputProps> = (props) => {
   return (
-    <div>
-      <h1>boo</h1>
-    </div>
+    <input
+      className="input__generics"
+      type={props.type}
+      placeholder={props.placeholder}
+      value={props.value}
+      onChange={props.onChange ? (e) => props.onChange(e) : undefined}
+    />
   );
 };
