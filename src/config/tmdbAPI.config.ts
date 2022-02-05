@@ -31,7 +31,7 @@ class TmdbControllerAPI implements TmdbAPI {
     const url = `tv/${tvType[type]}`;
     return axiosClient.get(url, params);
   }
-  public getVideos(type: Category, id: string): Promise<AxiosResponse<never>> {
+  public getVideos(type: Category, id: number): Promise<AxiosResponse<never>> {
     const url = `${category[type]}/${id}/videos`;
     return axiosClient.get(url, { params: {} });
   }
@@ -41,17 +41,17 @@ class TmdbControllerAPI implements TmdbAPI {
   }
   public detail(
     type: Category,
-    id: string,
+    id: number,
     params: object
   ): Promise<AxiosResponse<never>> {
     const url = `${category[type]}/${id}`;
     return axiosClient.get(url, params);
   }
-  public credits(type: Category, id: string): Promise<AxiosResponse<never>> {
+  public credits(type: Category, id: number): Promise<AxiosResponse<never>> {
     const url = `${category[type]}/${id}/credits`;
     return axiosClient.get(url, { params: {} });
   }
-  public similar(type: Category, id: string): Promise<AxiosResponse<never>> {
+  public similar(type: Category, id: number): Promise<AxiosResponse<never>> {
     const url = `${category[type]}/${id}/similar`;
     return axiosClient.get(url, { params: {} });
   }
