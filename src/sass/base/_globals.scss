@@ -74,3 +74,8 @@ iframe {
 .section__header {
   @include flex(center, space-between);
 }
+
+button {
+  cursor: pointer;
+  font-family: $font-family;
+}
