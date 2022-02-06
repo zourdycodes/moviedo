@@ -1,15 +1,22 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 
-import { HeroSlide } from "../components/organisms/HeroSlide";
-import { MovieList } from "../components/organisms/MovieList";
 import { OutlineButton } from "../components/atoms/Button";
 
 import { category, movieType, tvType } from "../config/tmdbAPI.config";
 
+const HeroSlide = lazy(() => import("../components/organisms/HeroSlide"));
+
+const MovieList = lazy(() => import("../components/organisms/MovieList"));
+
 export const Home: React.FC = () => {
+  const renderLoader = (): JSX.Element => (
+    <div className="loader__component">
+      <p>loading...</p>
+    </div>
+  );
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <HeroSlide />
 
       <div className="container">
@@ -56,6 +63,6 @@ export const Home: React.FC = () => {
           <MovieList categoryType={category.tv} type={tvType.top_rated} />
         </div>
       </div>
-    </>
+    </Suspense>
   );
 };

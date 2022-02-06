@@ -11,7 +11,7 @@ interface IProps {
   categoryType: Category;
 }
 
-export const MovieCard: React.FC<IProps> = ({ categoryType, item }) => {
+const MovieCard: React.FC<IProps> = ({ categoryType, item }) => {
   const link = `/${category[categoryType]}/${item.id}`;
   const bgIMG = apiConfig.w500Image(item.poster_path || item.backdrop_path);
 
@@ -26,3 +26,5 @@ export const MovieCard: React.FC<IProps> = ({ categoryType, item }) => {
     </Link>
   );
 };
+
+export default MovieCard;

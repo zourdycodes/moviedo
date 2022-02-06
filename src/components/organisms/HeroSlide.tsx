@@ -6,7 +6,7 @@ import { movieType, tmdbApiController } from "../../config/tmdbAPI.config";
 import { MovieData } from "../../types/movie.type";
 import { HeroSlideItem } from "../molecules/HeroSlideItem";
 
-export const HeroSlide: React.FC = (): JSX.Element => {
+const HeroSlide: React.FC = (): JSX.Element => {
   SwiperCore.use([Autoplay]);
 
   const [movieItems, setMovieItems] = useState<MovieData[]>([]);
@@ -56,3 +56,5 @@ export const HeroSlide: React.FC = (): JSX.Element => {
     </div>
   );
 };
+
+export default HeroSlide;

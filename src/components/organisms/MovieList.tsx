@@ -1,8 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { lazy, Suspense, useCallback, useEffect, useState } from "react";
 
 import { SwiperSlide, Swiper } from "swiper/react";
-
-import { MovieCard } from "../molecules/MovieCard";
 
 import { tmdbApiController, category } from "../../config/tmdbAPI.config";
 import {
@@ -12,13 +10,17 @@ import {
   ResponseData,
 } from "../../types/movie.type";
 
+// import { MovieCard } from "../molecules/MovieCard";
+
+const MovieCard = lazy(() => import("../molecules/MovieCard"));
+
 type Props = {
   categoryType: Category | any;
   type: Movie | any;
   id?: number;
 };
 
-export const MovieList: React.FC<Props> = ({ categoryType, type, id }) => {
+const MovieList: React.FC<Props> = ({ categoryType, type, id }) => {
   const [items, setItems] = useState<MovieData[]>([]);
 
   const getList = useCallback(async () => {
@@ -46,17 +48,23 @@ export const MovieList: React.FC<Props> = ({ categoryType, type, id }) => {
     getList();
   }, [getList]);
 
+  const renderLoader = (): JSX.Element => <p>loading...</p>;
+
   return (
-    <div className="movie-list">
-      <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
-        {items.map((item, index: number) => {
-          return (
-            <SwiperSlide key={index}>
-              <MovieCard item={item} categoryType={categoryType} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </div>
+    <Suspense fallback={renderLoader()}>
+      <div className="movie-list">
+        <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
+          {items.map((item, index: number) => {
+            return (
+              <SwiperSlide key={index}>
+                <MovieCard item={item} categoryType={categoryType} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+    </Suspense>
   );
 };
+
+export default MovieList;
