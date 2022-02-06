@@ -1,6 +1,11 @@
 import axiosClient from "./axios.config";
-import { AxiosResponse } from "axios";
-import { Movie, TmdbAPI, TV, Category } from "../types/movie.type";
+import {
+  Movie,
+  TmdbAPI,
+  TV,
+  Category,
+  ResponseData,
+} from "../types/movie.type";
 
 export const category = {
   movie: "movie",
@@ -20,22 +25,19 @@ export const tvType = {
 };
 
 class TmdbControllerAPI implements TmdbAPI {
-  public getMovieList(
-    type: Movie,
-    params: object
-  ): Promise<AxiosResponse<never>> {
+  public getMovieList(type: Movie, params: object): Promise<ResponseData> {
     const url = `movie/${movieType[type]}`;
     return axiosClient.get(url, params);
   }
-  public getTvList(type: TV, params: object): Promise<AxiosResponse<never>> {
+  public getTvList(type: TV, params: object): Promise<ResponseData> {
     const url = `tv/${tvType[type]}`;
     return axiosClient.get(url, params);
   }
-  public getVideos(type: Category, id: number): Promise<AxiosResponse<never>> {
+  public getVideos(type: Category, id: number): Promise<ResponseData> {
     const url = `${category[type]}/${id}/videos`;
     return axiosClient.get(url, { params: {} });
   }
-  public search(type: Category, params: object): Promise<AxiosResponse<never>> {
+  public search(type: Category, params: object): Promise<ResponseData> {
     const url = `search/${category[type]}`;
     return axiosClient.get(url, params);
   }
@@ -43,15 +45,15 @@ class TmdbControllerAPI implements TmdbAPI {
     type: Category,
     id: number,
     params: object
-  ): Promise<AxiosResponse<never>> {
+  ): Promise<ResponseData> {
     const url = `${category[type]}/${id}`;
     return axiosClient.get(url, params);
   }
-  public credits(type: Category, id: number): Promise<AxiosResponse<never>> {
+  public credits(type: Category, id: number): Promise<ResponseData> {
     const url = `${category[type]}/${id}/credits`;
     return axiosClient.get(url, { params: {} });
   }
-  public similar(type: Category, id: number): Promise<AxiosResponse<never>> {
+  public similar(type: Category, id: number): Promise<ResponseData> {
     const url = `${category[type]}/${id}/similar`;
     return axiosClient.get(url, { params: {} });
   }

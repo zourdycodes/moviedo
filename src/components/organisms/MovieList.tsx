@@ -5,11 +5,15 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import { MovieCard } from "../molecules/MovieCard";
 
 import { tmdbApiController, category } from "../../config/tmdbAPI.config";
-import { Category, Movie, MovieData } from "../../types/movie.type";
-import { AxiosResponse } from "axios";
+import {
+  Category,
+  Movie,
+  MovieData,
+  ResponseData,
+} from "../../types/movie.type";
 
 type Props = {
-  categoryType: Category;
+  categoryType: Category | any;
   type: Movie | any;
   id?: number;
 };
@@ -18,7 +22,7 @@ export const MovieList: React.FC<Props> = ({ categoryType, type, id }) => {
   const [items, setItems] = useState<MovieData[]>([]);
 
   const getList = useCallback(async () => {
-    let response: AxiosResponse;
+    let response: ResponseData;
 
     const params = {};
 
@@ -34,8 +38,8 @@ export const MovieList: React.FC<Props> = ({ categoryType, type, id }) => {
     } else {
       response = await tmdbApiController.similar(categoryType, id!);
     }
-    // setItems(response.data);
-    console.log(response.data);
+    setItems(response.results);
+    console.log(response.results);
   }, [categoryType, type, id]);
 
   useEffect(() => {

@@ -22,7 +22,7 @@ export const HeroSlide: React.FC = (): JSX.Element => {
         }
       );
 
-      console.log(response);
+      setMovieItems(response.results);
     } catch (error) {
       console.error(error);
     }
